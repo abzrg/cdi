@@ -1,2 +1,10 @@
 log*
 constant/polyMesh*
+
+# Time directories other than 0
+0.[0-9]/
+[1-9]/
+[1-9][0-9]/
+
+# Animation file
+anim.*
