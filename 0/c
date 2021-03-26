@@ -31,7 +31,13 @@ boundaryField
         type            zeroGradient;
     }
 
-    wall
+    upper_wall
+    {
+        type            fixedGradient;
+        gradient        uniform -100;
+    }
+
+    lower_wall
     {
         type            zeroGradient;
     }

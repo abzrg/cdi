@@ -14,25 +14,29 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-convertToMeters 0.01;
+convertToMeters 1;
+
+// Dimensions of the channel
+h   2;  // Height
+l   5;  // Lenght
 
 vertices
 (
     // Back
-    (0 0 -0.5)
-    (5 0 -0.5)
-    (0 2 -0.5)
-    (5 2 -0.5)
+    (0   0  -0.1)
+    ($l  0  -0.1)
+    (0   $h -0.1)
+    ($l  $h -0.1)
     // Front
-    (0 0 0.5)
-    (5 0 0.5)
-    (0 2 0.5)
-    (5 2 0.5)
+    (0   0   0.1)
+    ($l  0   0.1)
+    (0   $h  0.1)
+    ($l  $h  0.1)
 );
 
 blocks
 (
-   	hex (0 1 3 2 4 5 7 6) (40 16 1) simpleGrading (1 1 1)
+   	hex (0 1 3 2 4 5 7 6) (100 40 1) simpleGrading (1 1 1)
 );
 
 edges
@@ -57,15 +61,22 @@ boundary
             (1 3 7 5)
         );
     }
-    wall
+    upper_wall
     {
 		type wall;
 		faces
 		(
 			(3 2 6 7)
-			(0 1 5 4)
 		);
 	}
+    lower_wall
+    {
+		type wall;
+		faces
+		(
+			(0 1 5 4)
+		);
+    }
 	frontAndBack
 	{
 		type empty;
