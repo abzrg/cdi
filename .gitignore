@@ -8,3 +8,4 @@ constant/polyMesh*
 
 # Animation file
 anim.*
+dynamicCode/*
