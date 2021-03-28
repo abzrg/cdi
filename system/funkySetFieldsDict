@@ -15,9 +15,9 @@ expressions
     internalFields
     {
         field       U;
-        variables   "Y=pos().y;Ymax=max(pos().y);Ymin=min(pos().y);U_avg=1;n=vector(1,0,0);";
-        expression  "n*1.5*U_avg*(1-sqr((Y-Ymin)/(Ymax-Ymin)))";
-        // condition   "";
+        variables   "Y=pos().y;Ymax=1;Ymin=0;U_avg=1;n=vector(1,0,0);";
+        expression  "n*2*U_avg*(1-sqr((Y)/(Ymax-Ymin)))";
+        condition   "pos().y <= 1";
         keepPatches 1; // Keep the boundary condition that set before
     }
 );
