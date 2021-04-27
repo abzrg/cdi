@@ -21,3 +21,4 @@ expressions
         keepPatches 1; // Keep the boundary condition that set before
     }
 );
+// vim: ft=foam

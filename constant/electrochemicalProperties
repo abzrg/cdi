@@ -10,41 +10,25 @@ FoamFile
     version     2.0;
     format      ascii;
     class       dictionary;
-    location    "system";
-    object      fvSolution;
+    location    "constant";
+    object      electrochemicalProperties;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-solvers
-{
-    c
-    {
-        solver          PBiCGStab;
-        preconditioner  DILU;
-        tolerance       1e-06;
-        relTol          0;
-    }
-}
+// Electrode voltage [ V ] { Volt = kg.m2.s-3.A-1 }
+EV              EV    [1 2 -3 0 0 -1 0] 1E-03;
 
-residualControl
-{
-    c               1e-3;
-    U               1e-3;
-}
+// Thermal voltage (@ 300K = 25.85 mV)
+VT              VT    [1 2 -3 0 0 -1 0] 25.85E-03;
 
-SIMPLE
-{
-    nNonOrthogonalCorrectors 0;
-}
+// Farday constant [ C.mol-1 ] { C = A.s }
+F               F     [0 0 1 0 -1 1 0] 96485;
 
-relaxationFactors
-{
-    equations
-    {
-        "c.*"           0.5;
-    }
-}
+// Stern layer capcitance [ MF/m3 ] { Farad = A2.s4.kg-1.m-2) }
+CapSt           CapSt [-1 5 4 0 0 2 0] 150E06;
 
+// Non-electrostatic adsorption parameter
+Mu	            Mu [0 0 0 0 0 0 0] 1.5;
 
 // ************************************************************************* //
 // vim: ft=foam

@@ -15,7 +15,12 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
+// Diffusivity in Electrode
 De              De [0 2 -1 0 0 0 0] 0.95e-09;
 
+// Micro- and macropore porosity of the electrode
+Pmi              Pmi [0 0 0 0 0 0 0] 0.3;
+Pma              Pma [0 0 0 0 0 0 0] 0.4;
 
 // ************************************************************************* //
+// vim: ft=foam

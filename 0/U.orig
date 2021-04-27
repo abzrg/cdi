@@ -55,10 +55,6 @@ boundaryField
         type            fixedValue;
         value           uniform (0 0 0);
     }
-    midPlane
-    {
-        type            symmetryPlane;
-    }
     frontAndBack
     {
         type            empty;
@@ -67,3 +63,4 @@ boundaryField
 
 
 // ************************************************************************* //
+// vim: ft=foam
