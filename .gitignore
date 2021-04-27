@@ -9,3 +9,4 @@ constant/polyMesh*
 # Animation file
 anim.*
 dynamicCode/*
+TODO.txt
