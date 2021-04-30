@@ -24,8 +24,8 @@ VT              VT    [1 2 -3 0 0 -1 0] 25.85E-03;
 // Farday constant [ C.mol-1 ] { C = A.s }
 F               F     [0 0 1 0 -1 1 0] 96485;
 
-// Stern layer capcitance [ MF/m3 ] { Farad = A2.s4.kg-1.m-2) }
-CapSt           CapSt [-1 5 4 0 0 2 0] 150E06;
+// Stern layer capcitance [ F ] { Farad = A2.s4.kg-1.m-2) }
+CapSt           CapSt [-1 -5 4 0 0 2 0] 150E06;
 
 // Non-electrostatic adsorption parameter
 Mu	            Mu [0 0 0 0 0 0 0] 1.5;
