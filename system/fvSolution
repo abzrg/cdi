@@ -24,11 +24,20 @@ solvers
         tolerance       1e-06;
         relTol          0;
     }
+
+    p
+    {
+        solver          PBiCGStab;
+        preconditioner  DIC;
+        tolerance       1e-06;
+        relTol          0;
+    }
 }
 
 residualControl
 {
     c               1e-3;
+    p               1e-3;
     U               1e-3;
 }
 
@@ -42,6 +51,7 @@ relaxationFactors
     equations
     {
         "c.*"           0.5;
+        "p.*"           0.5;
     }
 }
 
