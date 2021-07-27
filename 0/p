@@ -1,4 +1,4 @@
-/*--------------------------------*- C++ -*----------------------------------*\
+/*---------------------------------------------------------------------------*\
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     | Website:  https://openfoam.org
@@ -22,16 +22,21 @@ boundaryField
 {
     inlet
     {
-        type            fixedValue;
-        value           uniform 20;
+        type            zeroGradient;
     }
 
     outlet
     {
-        type            zeroGradient;
+        type            fixedValue;
+        value           uniform 0;
     }
 
     wall
+    {
+        type            zeroGradient;
+    }
+
+    midPlane
     {
         type            zeroGradient;
     }
@@ -43,4 +48,4 @@ boundaryField
 }
 
 // ************************************************************************* //
-// vim: ft=foam
+// 

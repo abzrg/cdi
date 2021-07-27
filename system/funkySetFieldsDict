@@ -1,4 +1,4 @@
-// ************************************************************************ //
+// ************************************************************************* //
 
 FoamFile
 {
@@ -20,5 +20,16 @@ expressions
         condition   "pos().y <= 1";
         keepPatches 1; // Keep the boundary condition that set before
     }
+
+    internalFields
+    {
+        field       src_coeff_c;
+        expression  "pos().y <= 1 ? 0 : 1";
+    }
+
+    internalFields
+    {
+        field       src_coeff_p;
+        expression  "pos().y <= 1 ? 0 : 1";
+    }
 );
-// vim: ft=foam

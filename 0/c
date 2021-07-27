@@ -1,4 +1,4 @@
-/*--------------------------------*- C++ -*----------------------------------*\
+/*---------------------------------------------------------------------------*\
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     | Website:  https://openfoam.org
@@ -16,7 +16,7 @@ FoamFile
 
 dimensions      [0 -3 0 0 1 0 0]; // mili molar
 
-internalField   uniform 10;
+internalField   uniform 20;
 
 boundaryField
 {
@@ -36,6 +36,11 @@ boundaryField
         type            zeroGradient;
     }
 
+    midPlane
+    {
+        type            zeroGradient;
+    }
+
     frontAndBack
     {
         type            empty;
@@ -43,4 +48,3 @@ boundaryField
 }
 
 // ************************************************************************* //
-// vim: ft=foam

@@ -1,8 +1,8 @@
-/*--------------------------------*- C++ -*----------------------------------*\
+/*---------------------------------------------------------------------------*\
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     | Website:  https://openfoam.org
-    \\  /    A nd           | Version:  7
+    \\  /    A nd           | Version:  8
      \\/     M anipulation  |
 \*---------------------------------------------------------------------------*/
 FoamFile
@@ -24,13 +24,13 @@ boundaryField
     inlet
     {
         type            codedFixedValue;
-        value           uniform (2 0 0);
+        value           uniform (1 0 0);
         name            fullyDeveloped;
         code            #{
             // Define average velocity
             const scalar U_avg = 1;
             // Define height of the channel
-            const scalar h = 1;
+            const scalar h = 2;
             // Define unit direction vector
             const vector n (1, 0, 0);
             const vector y (0, 1, 0);
@@ -40,7 +40,7 @@ boundaryField
 
             // Read boundary patch face centre coordinates
             const vectorField& Cf = this->patch().Cf();
-            
+
             const scalarField coord = (((Cf - ctr) & y) / h);
 
             operator == (n * 2 * U_avg * (1 - sqr(coord)));
@@ -55,6 +55,11 @@ boundaryField
         type            fixedValue;
         value           uniform (0 0 0);
     }
+    midPlane
+    {
+        type            fixedValue;
+        value           uniform (2 0 0);
+    }
     frontAndBack
     {
         type            empty;
@@ -63,4 +68,3 @@ boundaryField
 
 
 // ************************************************************************* //
-// vim: ft=foam
