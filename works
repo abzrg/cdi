@@ -1,0 +1,18 @@
+fix geometry
+fix constants
+fix BC and IC
+
+mesh
+
+
+fix inlet velocity???
+
+
+
+
+
+cfl number 
+
+different D
+
+

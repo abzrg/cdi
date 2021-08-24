@@ -43,15 +43,15 @@ residualControl
 
 SIMPLE
 {
-    nNonOrthogonalCorrectors 0;
+    nNonOrthogonalCorrectors 1;
 }
 
 relaxationFactors
 {
     equations
     {
-        "c.*"           0.5;
-        "p.*"           0.5;
+        "c.*"           0.2;
+        "p.*"           0.2;
     }
 }
 

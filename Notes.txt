@@ -1,0 +1,99 @@
+CONSTANTS
+==========
+------------------------------------------------------------------------------
+mu_att = 1.5            // nonelectrostatic adsorption parameter
+C_St   = 150 MF/m^3     // micropore capacitance
+F      = 96485 A.s/mol  // Faraday constant
+------------------------------------------------------------------------------
+p_m = 0.3               // micropore porosity
+p_M = 0.4               // macropore porosity
+------------------------------------------------------------------------------
+D  = 1.9e-09 m^2/s      // Effective Diffusion coefficient in the gap
+De = 0.95e-09 m^2/s     // Effective Diffusion coefficient in macropores
+------------------------------------------------------------------------------
+c_0   = 0               // influent concentration
+U_avg = 4.38e-04 m/s    // mean flow velocity
+------------------------------------------------------------------------------
+L_s = 0.8 mm            // gap thickness
+L   = 100 mm            // electrode length
+L_e = 0.68 mm           // electrode thickness
+W   = 20 mm             // electrode width
+------------------------------------------------------------------------------
+
+
+
+
+TIMESTEP
+=========
+t = T * Le^2 / De ; (Tmax = 19)
+    => t = 19 * 0.68e-3 * 0.68e-3 / 0.95e-9 = 9248 ( upperbound )
+
+
+
+
+CFL NUMBER
+===========
+u_max / u_avg = 2 (Laminar Flow) [1]
+[1]:  Cimbala, Yungas A.Çengel, John M. (2006). Fluid mechanics : fundamentals
+and applications (1st ed.). Boston: McGraw-Hill Higher Education. pp. 321, 322,
+323, 324, 325, 326, 327, 328, 329. ISBN 978-0072472363.
+
+----------------------------------------
+u_max = 2 * 4.38e-04 = 8.76e-04 m/s
+dx_min = mesh (TODO)
+CFL_max = u_max * dt / dx_min = 8.76e-4 * dt / 0.125 = 0.5
+dt = 0.3
+----------------------------------------
+
+
+
+
+REYNOLDS NUMBER
+================
+-----------------------------------
+nu (@25 Celcius) = 8.917e-07 m^2/s
+-----------------------------------
+
+NOTE: For a fluid moving between two plane parallel surfaces—where the width is
+much greater than the space between the plates—then the characteristic
+dimension is equal to the distance between the plates[1].
+
+[1]:  Seshadri, K (February 1978). "Laminar flow between parallel plates with
+injection of a reactant at high reynolds number". International Journal of Heat
+and Mass Transfer. 21 (2): 251-253.
+
+----------------------------------------------------
+Re = u_avg * (L_s / 2) / nu = 0.1965 << 1 (laminar)
+----------------------------------------------------
+
+We cannot consider the flow creeping because we need to solve the fluid
+momentum equation and see the effects of different veolocities
+
+BUT, For calculation involving flow in non-circular ducts, the hydraulic
+diameter can be substituted for the diameter of a circular duct, with
+reasonable accuracy, if the aspect ratio AR of the duct cross-section remains
+in the range
+1/4 < AR < 4
+
+------------------------------------------------
+D_h = 4 * A / p     // Hydarulic diameter
+    A = W * L_s / 2 = 20 * 0.8 / 2 = 8 mm^2
+    p = 2 * (W + L_s) = 41.6 mm
+ ==> D_h = 4 * 8 / 41.6 = 0.769 mm
+Re = 4.38e-04 * 0.769e-3 / 8.917e-07 = 0.378 (laminar)
+------------------------------------------------
+This is valid until the cross sectional area shape is not too exaggerated.
+
+
+
+
+ENTRANCE LENGTH
+===============
+------------------------------------------------------------------------
+L_laminar_entrance = 0.05 * Re * D_h = 1.453e-03 mm (D_h) & 3.92e-03 mm
+
+L_laminar_entrance << L/8 
+------------------------------------------------------------------------
+==> The velocity profile becomes fully developed in the entrance
+So we can use a fully developed velocity profile for the inlet boundary of our
+simplified case

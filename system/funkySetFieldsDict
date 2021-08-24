@@ -15,21 +15,50 @@ expressions
     internalFields
     {
         field       U;
-        variables   "Y=pos().y;Ymax=1;Ymin=0;U_avg=1;n=vector(1,0,0);";
+        variables   "Y=pos().y;Ymax=0.8e-3;Ymin=0;U_avg=4.38e-4;n=vector(1,0,0);";
         expression  "n*2*U_avg*(1-sqr((Y)/(Ymax-Ymin)))";
-        condition   "pos().y <= 1";
-        keepPatches 1; // Keep the boundary condition that set before
+        condition   "pos().y <= Ymax";
+        keepPatches true; // Keep the boundary condition that set before
     }
+
+    /* internalFields */
+    /* { */
+    /*     field       U; */
+    /*     variables   "Y=pos().y;Ymax=0.8e-3;Ymin=0;U_avg=4.38e-4;n=vector(1,0,0);"; */
+    /*     expression  "0.000438*n"; */
+    /*     condition   "pos().y <= 0.8e-3"; */
+    /*     keepPatches 1; // Keep the boundary condition that set before */
+    /* } */
 
     internalFields
     {
+        expression  "pos().y <= 0.8e-3 ? 0 : 1";
         field       src_coeff_c;
-        expression  "pos().y <= 1 ? 0 : 1";
     }
 
     internalFields
     {
         field       src_coeff_p;
-        expression  "pos().y <= 1 ? 0 : 1";
+        expression  "pos().y <= 0.8e-3 ? 0 : 1";
+    }
+
+    internalFields
+    {
+        field       coeff_diff_1; // Spacer
+        variables   "Diff=0.95e-09;";
+        expression  "pos().y <= 0.8e-3 ? 2 : 0"; // De = 0.5 * Ds
+    }
+
+    internalFields
+    {
+        field       coeff_diff_2; // Electrode
+        variables   "Diff=0.95e-09;";
+        expression  "pos().y <= 0.8e-3 ? 0 : 1"; // De = 0.5 * Ds
+    }
+
+    internalFields
+    {
+        field       coeff_conv;
+        expression  "pos().y <= 0.8e-3 ? 1 : 0";
     }
 );

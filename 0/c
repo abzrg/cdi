@@ -14,7 +14,7 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-dimensions      [0 -3 0 0 1 0 0]; // mili molar
+dimensions      [0 -3 0 0 1 0 0]; // milli molar
 
 internalField   uniform 20;
 
@@ -48,3 +48,4 @@ boundaryField
 }
 
 // ************************************************************************* //
+vim: ft=foam
