@@ -10,8 +10,17 @@ anim.*
 # Other
 dynamicCode/*
 TODO.txt
+Notes.txt
 cmd
 case.foam
 log*
 constant/polyMesh*
+
+0/U
+0/src_coeff_c
+0/src_coeff_p
+0/coeff_diff_1
+0/coeff_diff_2
+0/coeff_conv
+
 
