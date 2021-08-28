@@ -18,7 +18,7 @@ expressions
         variables   "Y=pos().y;Ymax=0.8e-3;Ymin=0;U_avg=4.38e-4;n=vector(1,0,0);";
         expression  "n*2*U_avg*(1-sqr((Y)/(Ymax-Ymin)))";
         condition   "pos().y <= Ymax";
-        keepPatches true; // Keep the boundary condition that set before
+        keepPatches false; // Keep the boundary condition that set before
     }
 
     /* internalFields */
@@ -29,6 +29,14 @@ expressions
     /*     condition   "pos().y <= 0.8e-3"; */
     /*     keepPatches 1; // Keep the boundary condition that set before */
     /* } */
+
+    // w
+    internalFields
+    {
+        variables   "Mu=1.5;";
+        expression  "pos().y <= 0.8e-3 ? 0 : 20*exp(Mu)";
+        field       w;
+    }
 
     internalFields
     {
