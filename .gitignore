@@ -41,6 +41,7 @@ log*
 constant/polyMesh*
 
 0/U
+0/w
 0/src_coeff_c
 0/src_coeff_p
 0/coeff_diff_1

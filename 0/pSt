@@ -22,14 +22,12 @@ boundaryField
 {
     inlet
     {
-        type            fixedValue;
-        value           $internalField;
+        type            zeroGradient;
     }
 
     outlet
     {
-        type            fixedValue;
-        value           $internalField;
+        type            zeroGradient;
     }
 
     wall
@@ -39,8 +37,7 @@ boundaryField
 
     midPlane
     {
-        type            fixedValue;
-        value           $internalField;
+        type            zeroGradient;
     }
 
     frontAndBack
