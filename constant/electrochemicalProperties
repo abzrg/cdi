@@ -30,7 +30,4 @@ CapSt           CapSt [-1 -5 4 0 0 2 0] 150E06;
 // Non-electrostatic adsorption parameter
 Mu              Mu [0 0 0 0 0 0 0] 1.5;
 
-// Donan potential
-pD              pD [1 2 -3 0 0 -1 0] 25.85E-03;
-
 // ************************************************************************* //

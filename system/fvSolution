@@ -32,6 +32,14 @@ solvers
         tolerance       1e-06;
         relTol          0;
     }
+
+    pD
+    {
+        solver          PBiCGStab;
+        preconditioner  DIC;
+        tolerance       1e-06;
+        relTol          0;
+    }
 }
 
 residualControl

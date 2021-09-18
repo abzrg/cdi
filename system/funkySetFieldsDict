@@ -33,9 +33,8 @@ expressions
     // w
     internalFields
     {
-        variables   "Mu=1.5;";
-        expression  "pos().y <= 0.8e-3 ? 0 : 20*exp(Mu)";
-        field       w;
+        expression  "pos().y <= 0.8e-3 ? 0 : 1";
+        field       p;
     }
 
     internalFields
