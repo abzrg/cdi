@@ -15,20 +15,33 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
+// ----------------------------------------------------------------------------
+// Commands -------------------------------------------------------------------
+// ----------------------------------------------------------------------------
 
+// Reading: https://cfd.direct/openfoam/user-guide/v6-running-applications-parallel/
 
 // The decomposePar utility is executed in the normal manner by typing
 // $    decomposePar
 
+// Command to run:
+// $    mpirun -np <nProcs> <foamExec> <otherArgs> -parallel > log &
+
+// To post process:
+// $    reconstructPar
+
+// To remove the time directories in processors:
+// $    foamListTimes -processor -rm
 
 
 // ----------------------------------------------------------------------------
 // Compulsory entries ---------------------------------------------------------
 // ----------------------------------------------------------------------------
 
-numberOfSubdomains 4;
+numberOfSubdomains 2;
 
 method          simple;
+
 
 
 // ----------------------------------------------------------------------------
@@ -38,7 +51,7 @@ method          simple;
 simpleCoeffs
 {
     // Number of subdomains in x, y, z
-    n               (2 2 1);
+    n               (2 1 1);
     // Cell skew factor
     delta           0.001;
 }
@@ -56,6 +69,7 @@ simpleCoeffs
 // }
 
 
+
 // ----------------------------------------------------------------------------
 // Distributed data entries (optional) ----------------------------------------
 // ----------------------------------------------------------------------------
@@ -65,6 +79,5 @@ distributed     no;
 
 // Root paths to case directories; <rt1> is the root path for node 1, etc.
 roots           ( );
-
 
 // ************************************************************************* //
