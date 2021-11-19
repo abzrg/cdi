@@ -27,3 +27,6 @@ constant/polyMesh*
 
 # Animation file
 anim.*
+
+# Ignore compressed files
+*.gz
