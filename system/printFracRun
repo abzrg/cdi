@@ -1,0 +1,45 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  dev
+     \\/     M anipulation  |
+-------------------------------------------------------------------------------
+Description
+    codedFunctionObject to calculate how far trhough a run the solver is and to
+    print it out to the screen (as a %, with 1dp).
+
+    To use, copy to system folder and add the following to the functions{} subdict
+    of controlDict:
+                #include        "printFracRun"
+Author
+    https://www.cfd-online.com/Forums/members/tobermory.html
+    source: https://www.cfd-online.com/Forums/openfoam-programming-development/238771-print-percentage-through-run-stdout-transient-solvers.html#post813484
+
+\*---------------------------------------------------------------------------*/
+
+func1
+{
+    libs            ( "libutilityFunctionObjects.so" );
+    type            coded;
+    name            printFracRun;
+    writeControl    timeStep;
+    writeInterval   1;
+    codeInclude
+    #{
+        #include "IOmanip.H"
+    #};
+    codeWrite       #{
+        scalar startTime = mesh().time().startTime().value();
+        scalar endTime = mesh().time().endTime().value();
+        scalar currentTime = mesh().time().value();
+        scalar pctComplete = 0;
+        if (startTime == endTime) {
+            pctComplete = 100.0;
+        } else {
+            pctComplete = 100 * (currentTime - startTime) / (endTime - startTime);
+        }
+        Info << setprecision(4);
+        Info<< "[printFracRun]: simulation is " << pctComplete << "% complete." << endl;
+    #};
+}
