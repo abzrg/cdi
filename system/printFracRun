@@ -39,7 +39,7 @@ func1
         } else {
             pctComplete = 100 * (currentTime - startTime) / (endTime - startTime);
         }
-        Info << setprecision(4);
+        Info<< setprecision(4);
         Info<< "[printFracRun]: simulation is " << pctComplete << "% complete." << endl;
     #};
 }
