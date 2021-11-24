@@ -18,7 +18,12 @@ expressions
         variables   "Y=pos().y;Ymax=0.8e-3;Ymin=0;U_avg=4.38e-4;n=vector(1,0,0);";
         expression  "n*2*U_avg*(1-sqr((Y)/(Ymax-Ymin)))";
         condition   "pos().y <= Ymax";
+
         keepPatches false; // Keep the boundary condition that set before
+        // Usually all the patches of the field (not the
+        // symmetry/wedge/...-stuff) are set to the type zeroGradient. With the
+        // option -keepPatches the patches are preserved from what was
+        // previously on the disk.
     }
 
     /* internalFields */
@@ -30,42 +35,73 @@ expressions
     /*     keepPatches 1; // Keep the boundary condition that set before */
     /* } */
 
-    // w
+ //   // p -- adsorption
+ //   internalFields
+ //   {
+ //       expression  "pos().y >= 0.8e-3 ? 1 : 0";
+ //       field       p;
+ //   }
+ //
+
+//    // p -- desorption
+//    internalFields
+//    {
+//        variables "EV=0.5;Mu=1.5;VT=25.85E-03;CapSt=150E06;F=96485;";
+//        condition "pos().y >= 0.8e-3";
+//        expression  "EV - pD + (F/CapSt)*2*c*exp(Mu)*sinh(pD/VT)";
+//        field       p;
+//    }
+
+    // p -- desorption
     internalFields
     {
-        expression  "pos().y <= 0.8e-3 ? 0 : 1";
+        variables "EV=0;Mu=1.5;VT=25.85E-03;CapSt=150E06;F=96485;";
+        condition "pos().y >= 0.8e-3";
+        expression  "EV - pD + (F/CapSt)*2*c*exp(Mu)*sinh(pD/VT)";
         field       p;
     }
 
+    // pD
+    internalFields
+    {
+        condition "pos().y <= 0.8e-3";
+        expression  "0";
+        field       pD;
+    }
+
+    // src_coeff_c
     internalFields
     {
         expression  "pos().y <= 0.8e-3 ? 0 : 1";
         field       src_coeff_c;
     }
 
+    // src_coeff_p
     internalFields
     {
         field       src_coeff_p;
         expression  "pos().y <= 0.8e-3 ? 0 : 1";
     }
 
+    // spacer
     internalFields
     {
-        field       coeff_diff_1; // Spacer
-        variables   "Diff=0.95e-09;";
+        field       coeff_diff_1;
         expression  "pos().y <= 0.8e-3 ? 2 : 0"; // De = 0.5 * Ds
     }
 
+    // electrode
     internalFields
     {
-        field       coeff_diff_2; // Electrode
-        variables   "Diff=0.95e-09;";
+        field       coeff_diff_2;
         expression  "pos().y <= 0.8e-3 ? 0 : 1"; // De = 0.5 * Ds
     }
 
+    // coeff_conv
     internalFields
     {
         field       coeff_conv;
         expression  "pos().y <= 0.8e-3 ? 1 : 0";
     }
 );
+
