@@ -1,8 +1,7 @@
 .PHONY: all cl clp pp dec rec mesh funk reset
 
 all:
-	@echo "Run: mpirun -np 4 cdiFoam -parallel >log 2>&1"
-	@echo "or: ./Allrun 2>&1 | tee log"
+	@echo Please refer to README.md
 
 # Single post-processing
 spp:
