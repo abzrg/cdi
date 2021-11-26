@@ -1,3 +1,9 @@
 #!/bin/sh
 
-cdiFoam 2>&1 | tee log
+set -xe
+
+# Single
+# cdiFoam 2>&1 | tee log
+
+# Parallel
+mpirun -np `foamDictionary -entry "numberOfSubdomains" -value system/decomposeParDict` cdiFoam -parallel 2>&1 | tee log
