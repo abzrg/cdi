@@ -21,8 +21,11 @@ cl:
 	-foamListTimes -rm
 
 # Decompose 'em
-dec:
+dec_ads:
 	decomposePar -force
+
+dec_des:
+	decomposePar -force -latestTime
 
 # Reconstruct 'em
 rec:
@@ -33,18 +36,16 @@ mesh:
 	blockMesh
 
 # Reset initial values with funkySetFields
-funk: reset
+funk_ads: reset
 	funkySetFields -time 0
+
+funk_des:
+	find -name 'src_*orig' -or -name 'coeff_*orig' -printf "%f\n" | while read f; do cp "0/$$f" "$$(foamListTimes -latestTime -withZero)/$${f%.orig}"; done
+	funkySetFields -latestTime
 
 # Copy original field values to the respecting fields, for use of funkySetFieldsDict
 reset:
-	cp 0/U.orig 0/U
-	cp 0/p.orig 0/p
-	cp 0/src_coeff_p.orig 0/src_coeff_p
-	cp 0/src_coeff_c.orig 0/src_coeff_c
-	cp 0/coeff_diff_1.orig 0/coeff_diff_1
-	cp 0/coeff_diff_2.orig 0/coeff_diff_2
-	cp 0/coeff_conv.orig 0/coeff_conv
+	find -name '*.orig' | while read f; do cp $$f ${f%.orig}; done
 	rm -rf postProcessing
 
 # Adsorptin voltage
