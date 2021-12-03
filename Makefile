@@ -26,7 +26,11 @@ dec_ads:
 dec_des:
 	decomposePar -force -latestTime
 
-# Reconstruct 'em
+# Reconstruct the latest time
+rec_latest:
+	reconstructPar -latestTime
+
+# Reconstruct all of'em
 rec:
 	reconstructPar
 
@@ -38,14 +42,16 @@ mesh:
 funk_ads: reset
 	funkySetFields -time 0
 
-funk_des:
-	find -name 'src_*orig' -or -name 'coeff_*orig' -printf "%f\n" | while read f; do cp "0/$$f" "$$(foamListTimes -latestTime -withZero)/$${f%.orig}"; done
+funk_des: rest_des rec_latestTime
 	funkySetFields -latestTime
 
 # Copy original field values to the respecting fields, for use of funkySetFieldsDict
-reset:
+reset_ads:
 	find -name '*.orig' | while read f; do cp $$f ${f%.orig}; done
-	rm -rf postProcessing
+
+# Copy original field values to the respecting fields, for use of funkySetFieldsDict (latestTime)
+reset_des:
+	find -name 'src_*orig' -or -name 'coeff_*orig' -printf "%f\n" | while read f; do cp "0/$$f" "$$(foamListTimes -latestTime -withZero)/$${f%.orig}"; done
 
 # Adsorptin voltage
 #	  Note: to escape $ in a makefile you prepend it with another $: $$
