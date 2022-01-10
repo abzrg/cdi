@@ -23,51 +23,49 @@ boundaryField
 {
     inlet
     {
+        // // Uniforma velocity profile
         // type            fixedValue;
         // value           uniform (4.38e-4 0 0);
 
+        // Fully developed parabolic velocity profile
         type            codedFixedValue;
         value           uniform (4.38e-4 0 0);
         name            fullyDeveloped;
-        code            #{
-            // Define average velocity
-            const scalar U_avg = 4.38e-4;
-            // Define height of the channel
-            const scalar h = 0.8e-3;
-            // Define unit direction vector
+        code
+        #{
+            const vector ctrOfPatch (0, 0, 0);
+            const vectorField& ctrOfFace = this->patch().Cf();
             const vector n (1, 0, 0);
             const vector y (0, 1, 0);
 
-            // Calculate boundary parch center
-            const vector ctr (0, 0, 0);
+            const scalarField coord = (((ctrOfFace - ctrOfPatch) & y) / h);
 
-            // Read boundary patch face centre coordinates
-            const vectorField& Cf = this->patch().Cf();
-
-            const scalarField coord = (((Cf - ctr) & y) / h);
+            const scalar U_avg = 4.38e-4;
 
             operator == (n * 2 * U_avg * (1 - sqr(coord)));
         #};
     }
+
     outlet
     {
         type            zeroGradient;
     }
+
     wall
     {
         type            fixedValue;
         value           uniform (0 0 0);
     }
+
     midPlane
     {
         type            zeroGradient;
     }
+
     frontAndBack
     {
         type            empty;
     }
 }
 
-
 // ************************************************************************* //
-// vim:ft=foam

@@ -10,13 +10,13 @@ FoamFile
     version     2.0;
     format      ascii;
     class       volScalarField;
+    location    "0";
     object      p;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-dimensions      [1 2 -3 0 0 -1 0]; // Volt
+dimensions      [1 2 -3 0 0 -1 0];
 
-// Not sure if this is the same in both regions
 internalField   uniform 0;
 
 boundaryField
@@ -24,13 +24,13 @@ boundaryField
     inlet
     {
         type            fixedValue;
-        value            uniform 0;
+        value           $internalField;
     }
 
     outlet
     {
         type            fixedValue;
-        value           uniform 0;
+        value           $internalField;
     }
 
     wall
@@ -41,7 +41,7 @@ boundaryField
     midPlane
     {
         type            fixedValue;
-        value            uniform 0;
+        value           $internalField;
     }
 
     frontAndBack
@@ -51,4 +51,3 @@ boundaryField
 }
 
 // ************************************************************************* //
-// 

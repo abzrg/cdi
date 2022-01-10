@@ -1,6 +1,8 @@
 # CDI
 
-This is a case repository for running Capacitive DeIonization simulations using OpenFOAMv7
+This is a case repository for running Capacitive DeIonization simulations using
+OpenFOAM (v8). The companion solver is
+[cdiFoam](https://github.com/reverseila/cdifoam)
 
 ## Workflow
 
@@ -13,10 +15,6 @@ This is a case repository for running Capacitive DeIonization simulations using 
     - edit:
         - `controlDict` (specify time interval and time step (`deltaT`))
         - `funkySetFieldsDict`
-    - `make cl clp funk_ads dec_ads`
-4. Desorption
-    - edit:
-        - `controlDict` (specify time interval)
-        - `funkySetFieldsDict`
-    - `make funk_des dec_des`
-5. Edit and run `Allrun`
+    - `make cl clp reset funk dec`
+4. Run:
+    - `./Allrun && ./desorp.sh && ./Allrun`

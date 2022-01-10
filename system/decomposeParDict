@@ -2,7 +2,7 @@
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     | Website:  https://openfoam.org
-    \\  /    A nd           | Version:  7
+    \\  /    A nd           | Version:  8
      \\/     M anipulation  |
 \*---------------------------------------------------------------------------*/
 FoamFile
@@ -15,69 +15,22 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-// ----------------------------------------------------------------------------
-// Commands -------------------------------------------------------------------
-// ----------------------------------------------------------------------------
-
-// Reading: https://cfd.direct/openfoam/user-guide/v6-running-applications-parallel/
-
-// The decomposePar utility is executed in the normal manner by typing
-// $    decomposePar
-
-// Command to run:
-// $    mpirun -np <nProcs> <foamExec> <otherArgs> -parallel > log &
-
-// To post process:
-// $    reconstructPar
-
-// To remove the time directories in processors:
-// $    foamListTimes -processor -rm
-
-
-// ----------------------------------------------------------------------------
-// Compulsory entries ---------------------------------------------------------
-// ----------------------------------------------------------------------------
-
+// Compulsory entries
 numberOfSubdomains 4;
-
 method          simple;
 
 
-
-// ----------------------------------------------------------------------------
-// Method Coeffecients --------------------------------------------------------
-// ----------------------------------------------------------------------------
-
+// Method Coeffecients
 simpleCoeffs
 {
-    // Number of subdomains in x, y, z
-    n               (2 2 1);
-    // Cell skew factor
-    delta           0.001;
+    n               (2 2 1); // Number of subdomains in x, y, z
+    delta           0.001;   // Cell skew factor
 }
 
-// hierarchicalCoeffs
-// {
-//     n               (1 1 1);
-//     delta           0.001;
-//     order           xyz;
-// }
-//
-// manualCoeffs
-// {
-//     dataFile        "";
-// }
 
-
-
-// ----------------------------------------------------------------------------
-// Distributed data entries (optional) ----------------------------------------
-// ----------------------------------------------------------------------------
-
-// Is the data distributed across several disks?
-distributed     no;
-
-// Root paths to case directories; <rt1> is the root path for node 1, etc.
-roots           ( );
+// Distributed data entries (optional)
+distributed     no;          // Is the data distributed across several disks?
+roots           ( );         // Root paths to case directories; <rt1> is the
+                             // root path for node 1, etc.
 
 // ************************************************************************* //

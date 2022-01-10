@@ -2,7 +2,7 @@
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     | Website:  https://openfoam.org
-    \\  /    A nd           | Version:  7
+    \\  /    A nd           | Version:  8
      \\/     M anipulation  |
 \*---------------------------------------------------------------------------*/
 FoamFile
@@ -10,11 +10,12 @@ FoamFile
     version     2.0;
     format      ascii;
     class       volScalarField;
+    location    "0";
     object      c;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-dimensions      [0 -3 0 0 1 0 0]; // milli molar
+dimensions      [0 -3 0 0 1 0 0];
 
 internalField   uniform 20;
 
@@ -23,7 +24,7 @@ boundaryField
     inlet
     {
         type            fixedValue;
-        value           uniform 20;
+        value           uniform $internalFiled;
     }
 
     outlet

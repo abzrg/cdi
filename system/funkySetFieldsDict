@@ -1,10 +1,16 @@
-// ************************************************************************* //
-
+/*--------------------------------*-------*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  8
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
 FoamFile
 {
     version 2.0;
     format  ascii;
     class   dictionary;
+    location "system";
     object  funckySetFieldsDict;
 }
 
@@ -19,43 +25,17 @@ expressions
         expression  "n*2*U_avg*(1-sqr((Y)/(Ymax-Ymin)))";
         condition   "pos().y <= Ymax";
 
-        keepPatches false; // Keep the boundary condition that set before
-        // Usually all the patches of the field (not the
-        // symmetry/wedge/...-stuff) are set to the type zeroGradient. With the
-        // option -keepPatches the patches are preserved from what was
-        // previously on the disk.
+        // Keep the boundary condition that set before
+        //     Usually all the patches of the field (not the symmetry/wedge/...)
+        //     are set to the type zeroGradient. With the option -keepPatches
+        //     the patches are preserved from what was previously on the disk.
+        keepPatches false;
     }
-
-    /* internalFields */
-    /* { */
-    /*     field       U; */
-    /*     variables   "Y=pos().y;Ymax=0.8e-3;Ymin=0;U_avg=4.38e-4;n=vector(1,0,0);"; */
-    /*     expression  "0.000438*n"; */
-    /*     condition   "pos().y <= 0.8e-3"; */
-    /*     keepPatches 1; // Keep the boundary condition that set before */
-    /* } */
-
- //   // p -- adsorption
- //   internalFields
- //   {
- //       expression  "pos().y >= 0.8e-3 ? 1 : 0";
- //       field       p;
- //   }
- //
-
-//    // p -- desorption
-//    internalFields
-//    {
-//        variables "EV=0.5;Mu=1.5;VT=25.85E-03;CapSt=150E06;F=96485;";
-//        condition "pos().y >= 0.8e-3";
-//        expression  "EV - pD + (F/CapSt)*2*c*exp(Mu)*sinh(pD/VT)";
-//        field       p;
-//    }
 
     // p -- desorption
     internalFields
     {
-        variables "EV=0;Mu=1.5;VT=25.85E-03;CapSt=150E06;F=96485;";
+        variables "EV=0.5;Mu=1.5;VT=25.85E-03;CapSt=150E06;F=96485;";
         condition "pos().y >= 0.8e-3";
         expression  "EV - pD + (F/CapSt)*2*c*exp(Mu)*sinh(pD/VT)";
         field       p;

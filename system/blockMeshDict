@@ -1,9 +1,9 @@
-/*--------------------------------*- C++ -*----------------------------------*\
-| =========                 |                                                 |
-| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
-|  \\    /   O peration     | Version:  4.x                                   |
-|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
-|    \\/     M anipulation  |                                                 |
+/*--------------------------------*-------*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  8
+     \\/     M anipulation  |
 \*---------------------------------------------------------------------------*/
 FoamFile
 {
@@ -47,46 +47,16 @@ vertices
 
 blocks
 (
-    // Coarse and uniform ------------------------------------------------------
-    // nCells: 46800
-
-    // Mesh size = 0.0625e-3 m
-    // Courant No. = 0.5
-    // Max flow velocity = 2 * Mean flow velocity = 8.76e-4 m/s
-    // => deltaT = 0.5 * 0.0625e-3 / 8.76e-4 = 0.0357 s
+    // nCells: <>
+    // Mesh size = <> m
+    // Courant No. = <>
+    // Max flow velocity = 2 * Mean flow velocity = <> m/s
+    // => deltaT = Co * MeshSize / MeanFlowVelocity = <> s
 
     hex (0 1 5 4 10 11 15 14) (200  13 1) simpleGrading (1 1 1) // Inlet
     hex (1 2 6 5 11 12 16 15) (1600 13 1) simpleGrading (1 1 1) // Spacer
     hex (2 3 7 6 12 13 17 16) (200  13 1) simpleGrading (1 1 1) // Outlet
     hex (5 6 9 8 15 16 19 18) (1600 13 1) simpleGrading (1 1 1) // Electrode
-
-
-    // Medium and uniform ------------------------------------------------------
-    // nCells: 71200
-
-    // Mesh size = 0.05e-3 m
-    // Courant No. = 0.5
-    // Max flow velocity = 2 * Mean flow velocity = 8.76e-4 m/s
-    // => deltaT = 0.5 * 0.05e-3 / 8.76e-4 = 0.0285 s
-
-    // hex (0 1 5 4 10 11 15 14) (250  16 1) simpleGrading (1 1 1) // Inlet
-    // hex (1 2 6 5 11 12 16 15) (2000 16 1) simpleGrading (1 1 1) // Spacer
-    // hex (2 3 7 6 12 13 17 16) (200  16 1) simpleGrading (1 1 1) // Outlet
-    // hex (5 6 9 8 15 16 19 18) (2000 16 1) simpleGrading (1 1 1) // Electrode
-
-
-    // Fine and uniform --------------------------------------------------------
-    // nCells: 102600
-
-    // Mesh size = 0.0417e-3 m
-    // Courant No. = 0.5
-    // Max flow velocity = 2 * Mean flow velocity = 8.76e-4 m/s
-    // => deltaT = 0.5 * 0.0417e-3 / 8.76e-4 = 0.0238 s
-
-    // hex (0 1 5 4 10 11 15 14) (300  19 1) simpleGrading (1 1 1) // Inlet
-    // hex (1 2 6 5 11 12 16 15) (2400 19 1) simpleGrading (1 1 1) // Spacer
-    // hex (2 3 7 6 12 13 17 16) (300  19 1) simpleGrading (1 1 1) // Outlet
-    // hex (5 6 9 8 15 16 19 18) (2400 19 1) simpleGrading (1 1 1) // Electrode
 );
 
 edges
