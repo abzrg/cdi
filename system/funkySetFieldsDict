@@ -21,7 +21,7 @@ expressions
     internalFields
     {
         field       U;
-        variables   "Y=pos().y;Ymax=0.8e-3;Ymin=0;U_avg=4.38e-4;n=vector(1,0,0);";
+        variables   "Y=pos().y;Ymax=0.4e-3;Ymin=0;U_avg=4.38e-4;n=vector(1,0,0);";
         expression  "n*2*U_avg*(1-sqr((Y)/(Ymax-Ymin)))";
         condition   "pos().y <= Ymax";
 
@@ -36,7 +36,7 @@ expressions
     internalFields
     {
         variables "EV=0.5;Mu=1.5;VT=25.85E-03;CapSt=150E06;F=96485;";
-        condition "pos().y >= 0.8e-3";
+        condition "pos().y >= 0.4e-3";
         expression  "EV - pD + (F/CapSt)*2*c*exp(Mu)*sinh(pD/VT)";
         field       p;
     }
@@ -44,7 +44,7 @@ expressions
     // pD
     internalFields
     {
-        condition "pos().y <= 0.8e-3";
+        condition "pos().y <= 0.4e-3";
         expression  "0";
         field       pD;
     }
@@ -52,7 +52,7 @@ expressions
     // src_coeff_c
     internalFields
     {
-        expression  "pos().y <= 0.8e-3 ? 0 : 1";
+        expression  "pos().y <= 0.4e-3 ? 0 : 1";
         field       src_coeff_c;
     }
 
@@ -60,28 +60,28 @@ expressions
     internalFields
     {
         field       src_coeff_p;
-        expression  "pos().y <= 0.8e-3 ? 0 : 1";
+        expression  "pos().y <= 0.4e-3 ? 0 : -1";
     }
 
     // spacer
     internalFields
     {
         field       coeff_diff_1;
-        expression  "pos().y <= 0.8e-3 ? 2 : 0"; // De = 0.5 * Ds
+        expression  "pos().y <= 0.4e-3 ? 2 : 0"; // De = 0.5 * Ds
     }
 
     // electrode
     internalFields
     {
         field       coeff_diff_2;
-        expression  "pos().y <= 0.8e-3 ? 0 : 1"; // De = 0.5 * Ds
+        expression  "pos().y <= 0.4e-3 ? 0 : 1"; // De = 0.5 * Ds
     }
 
     // coeff_conv
     internalFields
     {
         field       coeff_conv;
-        expression  "pos().y <= 0.8e-3 ? 1 : 0";
+        expression  "pos().y <= 0.4e-3 ? 1 : 0";
     }
 );
 

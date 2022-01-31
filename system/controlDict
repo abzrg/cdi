@@ -14,6 +14,7 @@ FoamFile
     object      controlDict;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+#include "myvars.h"
 
 application         cdiFoam;
 
@@ -24,14 +25,14 @@ stopAt              endTime;
 endTime             9248;
 //endTime           18496;
 
-deltaT              0.0285; // 0.0285;
+deltaT              $ts; // 0.0285;
 
 writeControl        timeStep;
-writeInterval       100;
+writeInterval       #calc "std::floor(30 / $ts)";
 
 purgeWrite          0;
 writeFormat         ascii;
-writePrecision      18;
+writePrecision      6;
 writeCompression    on;
 
 timeFormat          general;

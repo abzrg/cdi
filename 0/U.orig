@@ -37,11 +37,9 @@ boundaryField
             const vectorField& ctrOfFace = this->patch().Cf();
             const vector n (1, 0, 0);
             const vector y (0, 1, 0);
-
+            const scalar h (0.4e-3);
             const scalarField coord = (((ctrOfFace - ctrOfPatch) & y) / h);
-
             const scalar U_avg = 4.38e-4;
-
             operator == (n * 2 * U_avg * (1 - sqr(coord)));
         #};
     }

@@ -45,7 +45,7 @@ solvers
 residualControl
 {
     c               1e-9;
-    p               1e-9;
+    p.*             1e-9;
     U               1e-9;
 }
 
@@ -58,8 +58,8 @@ relaxationFactors
 {
     equations
     {
-        "c"             0.2;
-        "p.*"           0.2;
+        "c"             0.3;
+        "p.*"           0.3;
     }
 }
 

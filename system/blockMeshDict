@@ -14,10 +14,12 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
+#include "myvars.h"
+
 convertToMeters 1e-03;
 he 0.68;
-hs  0.8;
-ht 1.48;
+hs  0.4;
+ht 1.08;
 
 vertices
 (
@@ -53,10 +55,10 @@ blocks
     // Max flow velocity = 2 * Mean flow velocity = <> m/s
     // => deltaT = Co * MeshSize / MeanFlowVelocity = <> s
 
-    hex (0 1 5 4 10 11 15 14) (200  13 1) simpleGrading (1 1 1) // Inlet
-    hex (1 2 6 5 11 12 16 15) (1600 13 1) simpleGrading (1 1 1) // Spacer
-    hex (2 3 7 6 12 13 17 16) (200  13 1) simpleGrading (1 1 1) // Outlet
-    hex (5 6 9 8 15 16 19 18) (1600 13 1) simpleGrading (1 1 1) // Electrode
+    hex (0 1 5 4 10 11 15 14) ($no_x_inlet_outlet  $no_y_spacer $no_z) simpleGrading (1 1 1) // Inlet
+    hex (1 2 6 5 11 12 16 15) ($no_x_middle $no_y_spacer $no_z) simpleGrading (1 1 1) // Spacer
+    hex (2 3 7 6 12 13 17 16) ($no_x_inlet_outlet  $no_y_spacer $no_z) simpleGrading (1 1 1) // Outlet
+    hex (5 6 9 8 15 16 19 18) ($no_x_middle $no_y_elec $no_z) simpleGrading (1 1 1) // Electrode
 );
 
 edges
