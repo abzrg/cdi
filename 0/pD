@@ -28,6 +28,7 @@ boundaryField
 
     outlet
     {
+        type            zeroGradient;
     }
 
     wall
