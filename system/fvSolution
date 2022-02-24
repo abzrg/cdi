@@ -36,7 +36,7 @@ solvers
     pD
     {
         solver          PBiCGStab;
-        preconditioner  DIC;
+        preconditioner  DILU;
         tolerance       1e-06;
         relTol          0;
     }
