@@ -30,3 +30,9 @@ anim.*
 
 # Ignore compressed files
 *.gz
+
+# post processing folder
+postProcessing/**/*
+
+# ignore patch files
+*.patch
