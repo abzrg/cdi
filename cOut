@@ -1,0 +1,5 @@
+#!/bin/sh
+
+set -e
+
+awk '{print $2}' ./postProcessing/patchAverage/0/surfaceFieldValue.dat | tail -n1
