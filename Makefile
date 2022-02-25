@@ -33,6 +33,7 @@ funk: reset
 reset:
 	cp 0/U.orig 0/U
 	cp 0/p.orig 0/p
+	cp 0/pD.orig 0/pD
 	cp 0/src_coeff_p.orig 0/src_coeff_p
 	cp 0/src_coeff_c.orig 0/src_coeff_c
 	cp 0/coeff_diff_1.orig 0/coeff_diff_1
